@@ -1,4 +1,5 @@
 ﻿using BookshopMVC.Data;
+using BookshopMVC.Data.Repository.IRepository;
 using BookshopMVC.Models.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,16 +7,16 @@ namespace BookshopMVC.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryController(ApplicationDbContext context)
+        public CategoryController(ICategoryRepository context)
         {
-            _context = context;
+            _categoryRepository = context;
         }
 
         public IActionResult Index()
         {
-            List<Category> categories = _context.Categories.ToList();
+            List<Category> categories = _categoryRepository.GetAll().ToList();
 
             return View(categories);
         }
@@ -30,8 +31,8 @@ namespace BookshopMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Categories.Add(newCategory);
-                _context.SaveChanges();
+                _categoryRepository.Add(newCategory);
+                _categoryRepository.Save();
                 TempData["success"] = "Category created successfully";
 
                 return RedirectToAction("Index");
@@ -47,7 +48,7 @@ namespace BookshopMVC.Controllers
                 return NotFound();
             }
 
-            Category? category = _context.Categories.FirstOrDefault(u => u.Id == id);
+            Category? category = _categoryRepository.Get(u => u.Id == id);
 
             if (category == null)
             {
@@ -62,8 +63,8 @@ namespace BookshopMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Categories.Update(newCategory);
-                _context.SaveChanges();
+                _categoryRepository.Update(newCategory);
+                _categoryRepository.Save();
                 TempData["success"] = "Category updated successfully";
 
                 return RedirectToAction("Index");
@@ -79,7 +80,7 @@ namespace BookshopMVC.Controllers
                 return NotFound();
             }
 
-            Category? category = _context.Categories.FirstOrDefault(u => u.Id == id);
+            Category? category = _categoryRepository.Get(u => u.Id == id);
 
             if (category == null)
             {
@@ -92,15 +93,15 @@ namespace BookshopMVC.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            Category? category = _context.Categories.Find(id);
+            Category? category = _categoryRepository.Get(u => u.Id == id);
 
             if (category == null)
             {
                 return NotFound();
             }
 
-            _context.Categories.Remove(category);
-            _context.SaveChanges();
+            _categoryRepository.Remove(category);
+            _categoryRepository.Save();
             TempData["success"] = "Category deleted successfully";
 
             return RedirectToAction("Index");
