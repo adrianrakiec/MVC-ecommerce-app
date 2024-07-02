@@ -19,5 +19,19 @@ namespace BookshopMVC.Controllers
 
             return View(categories);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Category newCategory)
+        {
+            _context.Categories.Add(newCategory);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }
