@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BookshopMVC.Models.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookshopMVC.Data
 {
@@ -8,5 +9,7 @@ namespace BookshopMVC.Data
         { 
         
         }
+
+        public DbSet<Category> Categories { get; set; }
     }
 }
