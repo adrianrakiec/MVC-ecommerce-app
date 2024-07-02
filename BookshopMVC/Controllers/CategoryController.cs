@@ -28,10 +28,15 @@ namespace BookshopMVC.Controllers
         [HttpPost]
         public IActionResult Create(Category newCategory)
         {
-            _context.Categories.Add(newCategory);
-            _context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _context.Categories.Add(newCategory);
+                _context.SaveChanges();
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+
+            return View();
         }
     }
 }

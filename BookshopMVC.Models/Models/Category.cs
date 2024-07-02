@@ -13,8 +13,10 @@ namespace BookshopMVC.Models.Models
         [Key]
         public int Id { get; set; }
         [Required]
+        [MaxLength(30)]
         [DisplayName("Category name")]
         public string Name { get; set; }
+        [Range(1, 100, ErrorMessage = "Display Order must be between 1-100")]
         [DisplayName("Display order")]
         public int DisplayOrder { get; set; }
     }
