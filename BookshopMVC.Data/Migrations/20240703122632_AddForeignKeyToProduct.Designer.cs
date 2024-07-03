@@ -3,6 +3,7 @@ using BookshopMVC.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookshopMVC.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240703122632_AddForeignKeyToProduct")]
+    partial class AddForeignKeyToProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,10 +96,6 @@ namespace BookshopMVC.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
@@ -117,7 +116,6 @@ namespace BookshopMVC.Data.Migrations
                             Author = "Robert C. Martin",
                             CategoryId = 1,
                             Description = "A Handbook of Agile Software Craftsmanship",
-                            ImageUrl = "",
                             Price = 35.990000000000002,
                             Title = "Clean Code"
                         },
@@ -127,7 +125,6 @@ namespace BookshopMVC.Data.Migrations
                             Author = "Michael E. Gerber",
                             CategoryId = 2,
                             Description = "Why Most Small Businesses Don't Work and What to Do About It",
-                            ImageUrl = "",
                             Price = 29.989999999999998,
                             Title = "The E-Myth Revisited"
                         },
@@ -137,7 +134,6 @@ namespace BookshopMVC.Data.Migrations
                             Author = "Mark Hyman",
                             CategoryId = 3,
                             Description = "Fix Your Broken Brain by Healing Your Body First",
-                            ImageUrl = "",
                             Price = 24.989999999999998,
                             Title = "The UltraMind Solution"
                         },
@@ -147,7 +143,6 @@ namespace BookshopMVC.Data.Migrations
                             Author = "Sun Tzu",
                             CategoryId = 4,
                             Description = "An Ancient Chinese Classic on Military Strategy",
-                            ImageUrl = "",
                             Price = 19.989999999999998,
                             Title = "The Art of War"
                         },
@@ -157,7 +152,6 @@ namespace BookshopMVC.Data.Migrations
                             Author = "Napoleon Hill",
                             CategoryId = 5,
                             Description = "The Landmark Bestseller Now Revised and Updated for the 21st Century",
-                            ImageUrl = "",
                             Price = 14.99,
                             Title = "Think and Grow Rich"
                         },
@@ -167,7 +161,6 @@ namespace BookshopMVC.Data.Migrations
                             Author = "Dale Carnegie",
                             CategoryId = 5,
                             Description = "The Only Book You Need to Lead You to Success",
-                            ImageUrl = "",
                             Price = 22.989999999999998,
                             Title = "How to Win Friends and Influence People"
                         });
