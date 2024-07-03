@@ -25,7 +25,7 @@ namespace BookshopMVC.Models.Models
         [ForeignKey("CategoryId")]
         [ValidateNever]
         public Category Category { get; set; }
-        [ValidateNever]
+        [Required]
         public string ImageUrl { get; set; }
     }
 }
