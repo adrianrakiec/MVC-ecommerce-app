@@ -32,6 +32,7 @@ namespace BookshopMVC.Data
                     Author = "Robert C. Martin",
                     Price = 35.99,
                     CategoryId = 1,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -41,6 +42,7 @@ namespace BookshopMVC.Data
                     Author = "Michael E. Gerber",
                     Price = 29.99,
                     CategoryId = 2,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -50,6 +52,7 @@ namespace BookshopMVC.Data
                     Author = "Mark Hyman",
                     Price = 24.99,
                     CategoryId = 3,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -59,6 +62,7 @@ namespace BookshopMVC.Data
                     Author = "Sun Tzu",
                     Price = 19.99,
                     CategoryId = 4,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -68,6 +72,7 @@ namespace BookshopMVC.Data
                     Author = "Napoleon Hill",
                     Price = 14.99,
                     CategoryId = 5,
+                    ImageUrl = ""
                 },
                 new Product
                 {
@@ -77,6 +82,7 @@ namespace BookshopMVC.Data
                     Author = "Dale Carnegie",
                     Price = 22.99,
                     CategoryId = 5,
+                    ImageUrl = ""
                 }
              );
         }
