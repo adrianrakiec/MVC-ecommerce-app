@@ -20,7 +20,7 @@ namespace BookshopMVC.Data.Repository
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
-            ApplicationUser = new ApplicationUserRepository(_db);
+            ApplicationUser = new ApplicationUserRepository(_context);
             ShoppingCart = new ShoppingCartRepository(_context);
             Category = new CategoryRepository(_context);
             Product = new ProductRepository(_context);
