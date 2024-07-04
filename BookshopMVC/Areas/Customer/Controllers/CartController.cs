@@ -26,17 +26,18 @@ namespace BookshopMVC.Areas.Customer.Controllers
             ShoppingCartVM = new()
             {
                 ShoppingCartList = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId,
-                includeProperties: "Product")
+                includeProperties: "Product"),
+                OrderHeader = new()
             };
 
             foreach(var cart in ShoppingCartVM.ShoppingCartList)
             {
                 cart.Price = GetPrice(cart);
-                ShoppingCartVM.OrderTotal += cart.Price * cart.Count;
+                ShoppingCartVM.OrderHeader.OrderTotal += cart.Price * cart.Count;
             }
 
             // Truncate to two decimal places without rounding
-            ShoppingCartVM.OrderTotal = Math.Floor(ShoppingCartVM.OrderTotal * 100) / 100;
+            ShoppingCartVM.OrderHeader.OrderTotal = Math.Floor(ShoppingCartVM.OrderHeader.OrderTotal * 100) / 100;
 
             return View(ShoppingCartVM);
         }
