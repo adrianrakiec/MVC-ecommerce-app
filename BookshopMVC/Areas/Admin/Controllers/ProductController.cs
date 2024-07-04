@@ -3,12 +3,15 @@ using BookshopMVC.Data.Repository;
 using BookshopMVC.Data.Repository.IRepository;
 using BookshopMVC.Models.Models;
 using BookshopMVC.Models.ViewModels;
+using BookshopMVC.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BookshopMVC.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

@@ -1,4 +1,5 @@
-﻿using BookshopMVC.Data.Repository.IRepository;
+﻿using BookshopMVC.Data.Data;
+using BookshopMVC.Data.Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
