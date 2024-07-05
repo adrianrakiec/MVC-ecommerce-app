@@ -5,11 +5,11 @@ VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookshopMVC", "BookshopMVC\BookshopMVC.csproj", "{B87A93F7-4FD8-49EF-8BBC-691B9727790F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookshopMVC.Data", "BookshopMVC.Data\BookshopMVC.Data.csproj", "{B22D6554-0D85-4A1F-8257-36B2AF6C56EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookshopMVC.Data", "BookshopMVC.Data\BookshopMVC.Data.csproj", "{B22D6554-0D85-4A1F-8257-36B2AF6C56EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookshopMVC.Models", "BookshopMVC.Models\BookshopMVC.Models.csproj", "{6579A91E-79AA-442B-BC07-0D937B821DBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookshopMVC.Models", "BookshopMVC.Models\BookshopMVC.Models.csproj", "{6579A91E-79AA-442B-BC07-0D937B821DBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookshopMVC.Utility", "BookshopMVC.Utility\BookshopMVC.Utility.csproj", "{9E761433-8760-4504-8867-926E4052D7E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookshopMVC.Utility", "BookshopMVC.Utility\BookshopMVC.Utility.csproj", "{9E761433-8760-4504-8867-926E4052D7E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
