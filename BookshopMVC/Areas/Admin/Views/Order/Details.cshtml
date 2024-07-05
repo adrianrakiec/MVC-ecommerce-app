@@ -1,6 +1,7 @@
 ﻿@model OrderVM
 
 <form method="post">
+    <input asp-for="OrderHeader.Id" hidden />
     <br />
     <div class="container">
         <div class="card">
@@ -32,7 +33,7 @@
                                 <div class="col-9">
                                     @if (User.IsInRole(SD.Role_Admin))
                                     {
-                                        <input asp-for="OrderHeader.Name" type="text" class="form-control" />
+                                        <input asp-for="OrderHeader.Name" type="text" class="form-control" required/>
                                         <span asp-validation-for="OrderHeader.Name" class="text-danger"></span>
                                     }
                                     else
@@ -48,7 +49,7 @@
                                 <div class="col-9">
                                     @if (User.IsInRole(SD.Role_Admin))
                                     {
-                                        <input asp-for="OrderHeader.PhoneNumber" type="text" class="form-control" />
+                                        <input asp-for="OrderHeader.PhoneNumber" type="text" class="form-control" required />
                                         <span asp-validation-for="OrderHeader.PhoneNumber" class="text-danger"></span>
                                     }
                                     else
@@ -64,7 +65,7 @@
                                 <div class="col-9">
                                     @if (User.IsInRole(SD.Role_Admin))
                                     {
-                                        <input asp-for="OrderHeader.StreetAddress" type="text" class="form-control" />
+                                        <input asp-for="OrderHeader.StreetAddress" type="text" class="form-control" required />
                                         <span asp-validation-for="OrderHeader.StreetAddress" class="text-danger"></span>
                                     }
                                     else
@@ -80,7 +81,7 @@
                                 <div class="col-9">
                                     @if (User.IsInRole(SD.Role_Admin))
                                     {
-                                        <input asp-for="OrderHeader.City" type="text" class="form-control" />
+                                        <input asp-for="OrderHeader.City" type="text" class="form-control" required />
                                         <span asp-validation-for="OrderHeader.City" class="text-danger"></span>
                                     }
                                     else
@@ -96,7 +97,7 @@
                                 <div class="col-9">
                                     @if (User.IsInRole(SD.Role_Admin))
                                     {
-                                        <input asp-for="OrderHeader.State" type="text" class="form-control" />
+                                        <input asp-for="OrderHeader.State" type="text" class="form-control" required />
                                         <span asp-validation-for="OrderHeader.State" class="text-danger"></span>
                                     }
                                     else
@@ -112,7 +113,7 @@
                                 <div class="col-9">
                                     @if (User.IsInRole(SD.Role_Admin))
                                     {
-                                        <input asp-for="OrderHeader.PostalCode" type="text" class="form-control" />
+                                        <input asp-for="OrderHeader.PostalCode" type="text" class="form-control" required />
                                         <span asp-validation-for="OrderHeader.PostalCode" class="text-danger"></span>
                                     }
                                     else
@@ -226,7 +227,7 @@
 
                             @if (User.IsInRole(SD.Role_Admin))
                             {
-                                <input type="submit" class="btn btn-warning form-control my-1" value="Update Order Details" />
+                                <button type="submit" asp-action="UpdateOrderDetail" class="btn btn-warning form-control my-1">Update Order Details</button>
                             }
                         </div>
 
