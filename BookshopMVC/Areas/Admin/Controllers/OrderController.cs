@@ -1,5 +1,6 @@
 ﻿using BookshopMVC.Data.Repository.IRepository;
 using BookshopMVC.Models.Models;
+using BookshopMVC.Models.ViewModels;
 using BookshopMVC.Utility;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,5 +40,16 @@ namespace BookshopMVC.Areas.Admin.Controllers
 
             return View(orderHeaders);
 		}
-	}
+
+        public IActionResult Details(int orderId)
+        {
+            OrderVM orderVM = new()
+            {
+                OrderHeader = _unitOfWork.OrderHeader.Get(u => u.Id == orderId, includeProperties: "ApplicationUser"),
+                OrderDetail = _unitOfWork.OrderDetail.GetAll(u => u.OrderHeaderId == orderId, includeProperties: "Product")
+            };
+
+            return View(orderVM);
+        }
+    }
 }
