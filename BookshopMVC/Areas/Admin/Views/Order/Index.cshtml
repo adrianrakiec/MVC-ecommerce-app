@@ -74,8 +74,6 @@
             <tbody>
                 @foreach (var obj in Model)
                 {
-                    @* if(string.IsNullOrEmpty(status) || status == "all" || status == obj.OrderStatus.ToLower())
-                    { *@
                         <tr>
                             <td>@obj.Id</td>
                             <td>
@@ -87,7 +85,7 @@
                             <td>
                                 @obj.ApplicationUser.Email
                             </td>
-                            <td>
+                            <td class="@(obj.OrderStatus == SD.StatusCancelled ? "bg-danger" : "")">
                                 @obj.OrderStatus
                             </td>
                             <td>
@@ -101,7 +99,6 @@
                                 </div>
                             </td>
                         </tr>
-                   // }
                 }
             </tbody>
         </table>
