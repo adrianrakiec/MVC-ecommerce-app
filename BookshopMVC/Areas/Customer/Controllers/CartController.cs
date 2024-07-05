@@ -125,7 +125,7 @@ namespace BookshopMVC.Areas.Customer.Controllers
 
             if(User.IsInRole("Customer"))
             {
-                var domain = "https://localhost:7223/";
+                var domain = Request.Scheme + "://" + Request.Host.Value + "/";
 
                 var options = new SessionCreateOptions
                 {
