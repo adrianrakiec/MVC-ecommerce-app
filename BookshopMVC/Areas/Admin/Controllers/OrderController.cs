@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookshopMVC.Areas.Admin.Controllers
 {
+	[Area("admin")]
 	public class OrderController : Controller
 	{
 		private readonly IUnitOfWork _unitOfWork;
@@ -15,7 +16,9 @@ namespace BookshopMVC.Areas.Admin.Controllers
 
 		public IActionResult Index()
 		{
-			return View();
+            List<OrderHeader> orderHeaders = _unitOfWork.OrderHeader.GetAll(includeProperties: "ApplicationUser").ToList();
+
+            return View(orderHeaders);
 		}
 
 
@@ -27,8 +30,6 @@ namespace BookshopMVC.Areas.Admin.Controllers
 			List<OrderHeader> objOrderHeaders = _unitOfWork.OrderHeader.GetAll(includeProperties: "ApplicationUser").ToList();
 			return Json(new { data = objOrderHeaders });
 		}
-
-
 		#endregion
 	}
 }
