@@ -67,4 +67,4 @@ namespace BookshopMVC.Data.DbInitializer
         }
     }
 }
-}
+
