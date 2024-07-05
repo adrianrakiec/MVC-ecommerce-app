@@ -9,6 +9,7 @@ using System.Security.Claims;
 namespace BookshopMVC.Areas.Admin.Controllers
 {
 	[Area("admin")]
+    [Authorize]
 	public class OrderController : Controller
 	{
 		private readonly IUnitOfWork _unitOfWork;
@@ -23,7 +24,6 @@ namespace BookshopMVC.Areas.Admin.Controllers
 		public IActionResult Index(string status)
 		{
             IEnumerable<OrderHeader> orderHeaders;
-            // = _unitOfWork.OrderHeader.GetAll(includeProperties: "ApplicationUser").ToList();
 
             if (User.IsInRole(SD.Role_Admin))
             {
@@ -35,7 +35,7 @@ namespace BookshopMVC.Areas.Admin.Controllers
                 var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
 
                 orderHeaders = _unitOfWork.OrderHeader
-                    .GetAll(u => u.ApplicationUserId == userId, includeProperties: "ApplicationUser");
+                    .GetAll(u => u.ApplicationUserId == userId, includeProperties: "ApplicationUser").ToList();
             }
 
             switch (status)
@@ -99,6 +99,42 @@ namespace BookshopMVC.Areas.Admin.Controllers
             TempData["Success"] = "Order Details Updated Successfully.";
 
             return RedirectToAction(nameof(Details), new { orderId = orderHeaderFromDb.Id });
+        }
+
+        [HttpPost]
+        [Authorize(Roles = SD.Role_Admin)]
+        public IActionResult StartProcessing()
+        {
+            _unitOfWork.OrderHeader.UpdateStatus(OrderVM.OrderHeader.Id, SD.StatusInProcess);
+            _unitOfWork.Save();
+
+            TempData["Success"] = "Order Details Updated Successfully.";
+
+            return RedirectToAction(nameof(Details), new { orderId = OrderVM.OrderHeader.Id });
+        }
+
+        [HttpPost]
+        [Authorize(Roles = SD.Role_Admin)]
+        public IActionResult ShipOrder()
+        {
+            var orderHeader = _unitOfWork.OrderHeader.Get(u => u.Id == OrderVM.OrderHeader.Id);
+
+            orderHeader.TrackingNumber = OrderVM.OrderHeader.TrackingNumber;
+            orderHeader.Carrier = OrderVM.OrderHeader.Carrier;
+            orderHeader.OrderStatus = SD.StatusShipped;
+            orderHeader.ShippingDate = DateTime.Now;
+
+            if (orderHeader.PaymentStatus == SD.PaymentStatusDelayedPayment)
+            {
+                orderHeader.PaymentDueDate = DateOnly.FromDateTime(DateTime.Now.AddDays(7));
+            }
+
+            _unitOfWork.OrderHeader.Update(orderHeader);
+            _unitOfWork.Save();
+
+            TempData["Success"] = "Order Shipped Successfully.";
+
+            return RedirectToAction(nameof(Details), new { orderId = OrderVM.OrderHeader.Id });
         }
     }
 }
