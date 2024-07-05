@@ -25,5 +25,8 @@ namespace BookshopMVC.Utility
 		public const string PaymentStatusApproved = "Approved";
 		public const string PaymentStatusDelayedPayment = "ApprovedForDelayedPayment";
 		public const string PaymentStatusRejected = "Rejected";
-	}
+
+		//Session key name
+        public const string SessionCart = "SessionShoppingCart";
+    }
 }
