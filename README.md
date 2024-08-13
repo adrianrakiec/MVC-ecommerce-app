@@ -29,9 +29,3 @@ The project follows an n-tier architecture with clear separation of concerns and
 
 - **Repository Pattern:** Abstracts data access logic.
 - **Unit of Work Pattern:** Manages transactions across multiple repositories.
-
-## Getting Started
-
-This project is hosted on the Microsoft Azure platform. 
-
-Try [demo](https://bookshop-mvc-app.azurewebsites.net)
